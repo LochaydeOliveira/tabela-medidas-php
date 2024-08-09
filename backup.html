@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medida Master</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <style>
+        .border-inputs {
+            border: none;
+            font-size: 12px;
+            border-radius: 2px;
+            width: 70px;
+        }
+
+        body {
+            padding: 2rem;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 1000px;
+            animation: fadeInSlide 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        @keyframes fadeInSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .table-container {
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+
+        .form-check-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        input[type="text"]:invalid {
+            border-color: red;
+        }
+
+        input[type="text"]:valid {
+            border-color: green;
+        }
+
+        @media (max-width: 768px) {
+            .border-inputs {
+                width: 60px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .border-inputs {
+                width: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-3">CADASTRAR NOVO PRODUTO</h1>
+
+        <div class="form-section">
+            <h4>Informações do Produto</h4>
+            <form action="salvar.php" method="POST">
+
+                <!-- Nome do produto -->
+                <div class="mb-2">
+                    <label for="productName" class="form-label">Nome do Produto</label>
+                    <input type="text" class="form-control" id="productName" name="productName" placeholder="Digite o nome do produto" required>
+                </div>
+
+                <!-- Tipo de produto -->
+                <div class="mb-2">
+                    <label for="productType" class="form-label">Tipo de Produto</label>
+                    <select class="form-select" id="productType" name="productType" required>
+                        <option value="" disabled selected>Escolha o tipo de produto</option>
+                        <option value="Vestido Longo">Vestido Longo</option>
+                        <option value="Vestido Curto">Vestido Curto</option>
+                        <option value="Conjunto Calça">Conjunto Calça</option>
+                        <option value="Conjunto Short">Conjunto Short</option>
+                        <option value="Conjunto Saia">Conjunto Saia</option>
+                    </select>
+                </div>
+
+                <!-- Tabela de Medidas -->
+                <div class="form-section table-container">
+                    <h4>Tabela de Medidas</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tamanho</th>
+                                <th>Comprimento</th>
+                                <th>Ombro</th>
+                                <th>Busto</th>
+                                <th>Cintura</th>
+                                <th>Quadril</th>
+                                <th>Manga</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- tamanho PP -->
+                            <tr class="bg-light">
+                                <td>PP</td>
+                                <td class="d-flex">
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="comprimento_pp_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Comprimento Mín PP" required>
+                                        <input name="comprimento_pp_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Comprimento Máx PP" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="ombro_pp_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Ombro Mín PP" required>
+                                        <input name="ombro_pp_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Ombro Máx PP" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="busto_pp_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Busto Mín PP" required>
+                                        <input name="busto_pp_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Busto Máx PP" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="cintura_pp_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Cintura Mín PP" required>
+                                        <input name="cintura_pp_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Cintura Máx PP" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="quadril_pp_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Quadril Mín PP" required>
+                                        <input name="quadril_pp_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Quadril Máx PP" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="manga_pp_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Manga Mín PP" required>
+                                        <input name="manga_pp_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Manga Máx PP" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- tamanho P -->
+                            <tr>
+                                <td>P</td>
+                                <td class="d-flex">
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="comprimento_p_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Comprimento Mín P" required>
+                                        <input name="comprimento_p_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Comprimento Máx P" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="ombro_p_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Ombro Mín P" required>
+                                        <input name="ombro_p_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Ombro Máx P" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="busto_p_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Busto Mín P" required>
+                                        <input name="busto_p_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Busto Máx P" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="cintura_p_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Cintura Mín P" required>
+                                        <input name="cintura_p_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Cintura Máx P" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="quadril_p_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Quadril Mín P" required>
+                                        <input name="quadril_p_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Quadril Máx P" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="manga_p_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Manga Mín P" required>
+                                        <input name="manga_p_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Manga Máx P" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- tamanho M -->
+                            <tr class="bg-light">
+                                <td>M</td>
+                                <td class="d-flex">
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="comprimento_m_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Comprimento Mín M" required>
+                                        <input name="comprimento_m_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Comprimento Máx M" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="ombro_m_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Ombro Mín M" required>
+                                        <input name="ombro_m_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Ombro Máx M" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="busto_m_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Busto Mín M" required>
+                                        <input name="busto_m_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Busto Máx M" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="cintura_m_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Cintura Mín M" required>
+                                        <input name="cintura_m_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Cintura Máx M" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="quadril_m_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Quadril Mín M" required>
+                                        <input name="quadril_m_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Quadril Máx M" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="manga_m_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Manga Mín M" required>
+                                        <input name="manga_m_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Manga Máx M" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- tamanho G -->
+                            <tr>
+                                <td>G</td>
+                                <td class="d-flex">
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="comprimento_g_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Comprimento Mín G" required>
+                                        <input name="comprimento_g_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Comprimento Máx G" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="ombro_g_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Ombro Mín G" required>
+                                        <input name="ombro_g_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Ombro Máx G" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="busto_g_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Busto Mín G" required>
+                                        <input name="busto_g_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Busto Máx G" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="cintura_g_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Cintura Mín G" required>
+                                        <input name="cintura_g_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Cintura Máx G" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="quadril_g_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Quadril Mín G" required>
+                                        <input name="quadril_g_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Quadril Máx G" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="manga_g_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Manga Mín G" required>
+                                        <input name="manga_g_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Manga Máx G" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- tamanho GG -->
+                            <tr class="bg-light">
+                                <td>GG</td>
+                                <td class="d-flex">
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="comprimento_gg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Comprimento Mín GG" required>
+                                        <input name="comprimento_gg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Comprimento Máx GG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="ombro_gg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Ombro Mín GG" required>
+                                        <input name="ombro_gg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Ombro Máx GG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="busto_gg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Busto Mín GG" required>
+                                        <input name="busto_gg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Busto Máx GG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="cintura_gg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Cintura Mín GG" required>
+                                        <input name="cintura_gg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Cintura Máx GG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="quadril_gg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Quadril Mín GG" required>
+                                        <input name="quadril_gg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Quadril Máx GG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="manga_gg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Manga Mín GG" required>
+                                        <input name="manga_gg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Manga Máx GG" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- tamanho XG -->
+                            <tr class="bg-light">
+                                <td>XG</td>
+                                <td class="d-flex">
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="comprimento_xg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Comprimento Mín XG" required>
+                                        <input name="comprimento_xg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Comprimento Máx XG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="ombro_xg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Ombro Mín XG" required>
+                                        <input name="ombro_xg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Ombro Máx XG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="busto_xg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Busto Mín XG" required>
+                                        <input name="busto_xg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Busto Máx XG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="cintura_xg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Cintura Mín XG" required>
+                                        <input name="cintura_xg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Cintura Máx XG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="quadril_xg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Quadril Mín XG" required>
+                                        <input name="quadril_xg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Quadril Máx XG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="manga_xg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Manga Mín XG" required>
+                                        <input name="manga_xg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Manga Máx XG" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- tamanho XGG -->
+                            <tr class="bg-light">
+                                <td>XGG</td>
+                                <td class="d-flex">
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="comprimento_xgg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Comprimento Mín XGG" required>
+                                        <input name="comprimento_xgg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Comprimento Máx XGG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="ombro_xgg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Ombro Mín XGG" required>
+                                        <input name="ombro_xgg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Ombro Máx XGG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="busto_xgg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Busto Mín XGG" required>
+                                        <input name="busto_xgg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Busto Máx XGG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="cintura_xgg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Cintura Mín XGG" required>
+                                        <input name="cintura_xgg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Cintura Máx XGG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="quadril_xgg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Quadril Mín XGG" required>
+                                        <input name="quadril_xgg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Quadril Máx XGG" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column flex-md-row">
+                                        <input name="manga_xgg_min" type="number" class="form-control border-inputs mb-1 mb-md-0" placeholder="Mín" aria-label="Manga Mín XGG" required>
+                                        <input name="manga_xgg_max" type="number" class="form-control border-inputs" placeholder="Máx" aria-label="Manga Máx XGG" required>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
+                <!-- Botões de Ação -->
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary" type="submit">
+                        Salvar
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">
+                            <path d="M11 2H9v3h2z"/>
+                            <path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn-secondary" type="button">
+                        Cancelar
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                        </svg>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    </div>
+</body>
+</html>
